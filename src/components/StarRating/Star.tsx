@@ -1,19 +1,26 @@
-import { useState } from "react";
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
+interface StarIconProps {
+  filled: boolean;
+  hovered: boolean;
+  onClick: () => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}
 
-const StarIcon = () => {
-  const [hovered, setHovered] = useState(false);
-
+const StarIcon = ({ filled, hovered, onClick, onMouseEnter, onMouseLeave }: StarIconProps) => {
+  const StarComponent = filled || hovered ? FaStar : FaRegStar;
+  
   return (
-    <FaRegStar
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className={`transition-transform duration-200 cursor-pointer ${
-        hovered ? "text-amber-500 scale-125" : "text-gray-400"
+    <StarComponent
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={`transition-all duration-200 cursor-pointer ${
+        filled || hovered ? "text-amber-500 scale-110" : "text-gray-400"
       }`}
       aria-label="Rate"
-      role="img"
+      role="button"
     />
   );
 };
