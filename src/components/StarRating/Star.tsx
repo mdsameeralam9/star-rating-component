@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaRegStar } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
+
 
 const StarIcon = () => {
   const [hovered, setHovered] = useState(false);
