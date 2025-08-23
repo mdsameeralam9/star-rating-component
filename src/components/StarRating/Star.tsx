@@ -13,10 +13,11 @@ const StarIcon = ({ filled, onClick, onMouseEnter }: StarIconProps) => {
     <StarComponent
       onClick={onClick}
       onMouseEnter={onMouseEnter}
-      className={`transition-all duration-200 cursor-pointer ${
+      className={`transition-all duration-200 cursor-pointer hover:transition-transform scale-1.2 ${
         filled ? "text-amber-500 scale-110" : "text-gray-400"
       }`}
       aria-label="Rate"
+      size={24}
     />
   );
 };
