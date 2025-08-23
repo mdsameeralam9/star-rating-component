@@ -7,27 +7,31 @@ interface StarRatingProps {
   initialRating?: number;
 }
 
+type hoveredRating = number | null;
+
 const StarRating: React.FC<StarRatingProps> = ({ 
   numberOfStar = 5, 
   onRatingChange,
-  initialRating = 0 
+  initialRating
 }) => {
   const [rating, setRating] = useState(initialRating);
-  const [hoveredRating, setHoveredRating] = useState(0);
+  const [hoveredRating, setHoveredRating] = useState<hoveredRating>(null);
 
   const handleStarClick = (starIndex: number) => {
-    const newRating = starIndex + 1;
-    setRating(newRating);
-    onRatingChange?.(newRating);
+    setRating(starIndex);
+    onRatingChange?.(starIndex);
   };
 
   const handleStarHover = (starIndex: number) => {
-    setHoveredRating(starIndex + 1);
+    console.log(starIndex)
+    setHoveredRating(starIndex);
   };
 
   const handleMouseLeave = () => {
-    setHoveredRating(0);
+    setHoveredRating(null);
   };
+
+  const isActiveStar = hoveredRating ?? rating;
 
   return (
     <div className="flex gap-1" onMouseLeave={handleMouseLeave}>
@@ -36,11 +40,9 @@ const StarRating: React.FC<StarRatingProps> = ({
         .map((_, index) => (
           <StarIcon 
             key={index}
-            filled={index < rating}
-            hovered={index < hoveredRating}
+            filled={isActiveStar >= index}
             onClick={() => handleStarClick(index)}
             onMouseEnter={() => handleStarHover(index)}
-            onMouseLeave={() => {}}
           />
         ))}
     </div>
