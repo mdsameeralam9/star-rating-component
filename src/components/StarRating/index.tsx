@@ -15,8 +15,8 @@ const StarRating: React.FC<StarRatingProps> = ({
   numberOfStar = 5,
   onRatingChange,
   initialRating,
-  readonly=true,
-  disabled=false
+  readonly,
+  disabled
 }) => {
   const [rating, setRating] = useState(initialRating);
   const [hoveredRating, setHoveredRating] = useState<hoveredRating>(null);
