@@ -44,9 +44,18 @@ const StarRating2: React.FC<StarRatingProps> = ({
   const handleMouseMove = useCallback((e: React.MouseEvent, starIndex: number) => {
     if (readonly) return;
 
+    //This gets the position and size of the element that received the event (currentTarget) as a rectangle object.
     const rect = e.currentTarget.getBoundingClientRect();
+
+    // e.clientX  = e.clientX gives the mouse’s horizontal position relative to the viewport when the event happened.
+    // rect.left = rect.left is the element’s left edge relative to the viewport.
     const x = e.clientX - rect.left;
+
+    // This saves the element’s total width (including padding and border) in pixels for later use.
     const width = rect.width;
+
+    // Compares the x value (mouse position in element) to half the element’s width.
+    // If mouse pointer is in the left half of the element, isHalf is true. If in the right half, it’s false.
     const isHalf = x < width / 2;
     
     setHoverPosition({ index: starIndex, isHalf });
