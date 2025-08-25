@@ -7,6 +7,7 @@ interface StarRatingProps {
   initialRating?: number;
   readonly?: boolean;
   disabled?: boolean;
+  size?: number;
 }
 
 type hoveredRating = number | null;
@@ -15,8 +16,9 @@ const StarRating: React.FC<StarRatingProps> = ({
   numberOfStar = 5,
   onRatingChange,
   initialRating,
-  readonly,
-  disabled
+  readonly=false,
+  disabled=false,
+  size=24
 }) => {
   const [rating, setRating] = useState(initialRating);
   const [hoveredRating, setHoveredRating] = useState<hoveredRating>(null);
@@ -61,6 +63,7 @@ const StarRating: React.FC<StarRatingProps> = ({
           onMouseEnter={() => handleStarHover(index)}
           readonly={readonly}
           disabled={disabled}
+          size={size}
         />
       ))}
     </div>

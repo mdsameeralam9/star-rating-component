@@ -6,6 +6,7 @@ interface StarIconProps {
   onMouseEnter: () => void;
   readonly: boolean;
   disabled?: boolean;
+  size?: number;
 }
 
 const StarIcon = ({
@@ -14,6 +15,7 @@ const StarIcon = ({
   onMouseEnter,
   readonly,
   disabled,
+  size
 }: StarIconProps) => {
   const StarComponent = filled ? FaStar : FaRegStar;
 
@@ -30,7 +32,7 @@ const StarIcon = ({
           !readonly && !disabled && "cursor-pointer hover:scale-125"
         } ${filled ? "text-amber-500 scale-110" : "text-gray-400"}`}
         aria-label="Rate"
-        size={24}
+        size={size}
       />
     </button>
   );
